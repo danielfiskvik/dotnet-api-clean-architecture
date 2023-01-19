@@ -1,6 +1,12 @@
+using DotnetWebApi;
+using DotnetWebApi.Configurations;
+using Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddPersistenceModule(builder.Configuration);
+builder.Services.AddWebApiModule();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -15,6 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+await app.InitializePersistenceModuleAsync(builder.Configuration);
 
 app.UseHttpsRedirection();
 
