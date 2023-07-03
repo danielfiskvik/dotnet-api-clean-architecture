@@ -18,6 +18,9 @@ public class CharacterRepository : ICharacterRepository
     {
         return await _repository
             .SecureWithNoTracking<Character>()
+            .Include(x => x.Meanings)
+            .Include(x => x.Readings)
+            .Include(x => x.ContextSentences)
             .ToListAsync(ct);
     }
 }
