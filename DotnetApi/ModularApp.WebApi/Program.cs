@@ -11,7 +11,12 @@ builder.Services
     .AddWebApiModule()
     .AddApplicationModule();
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    // Adding NewtonsoftJson because reference loop must be set to ignore since we expose EF Core Domain with multiple reference through the API.
+    .AddNewtonsoftJson(options => 
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
