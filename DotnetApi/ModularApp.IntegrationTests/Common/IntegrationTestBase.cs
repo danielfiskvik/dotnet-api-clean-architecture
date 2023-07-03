@@ -46,6 +46,7 @@ public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
     
     private async Task<Guid> CurrentUserIdAsync()
     {
+        /*
         if (_currentUserId is not null)
             return _currentUserId.Value;
 
@@ -69,5 +70,7 @@ public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
         _existingUsersCount = await unitOfWork.ApplicationDbContext.Users.CountAsync();
             
         return _currentUserId.Value;
+        */
+        return Guid.NewGuid();
     }
 }

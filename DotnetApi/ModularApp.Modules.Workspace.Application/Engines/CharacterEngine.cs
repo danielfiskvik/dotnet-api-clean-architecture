@@ -1,98 +1,21 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using ModularApp.Modules.Workspace.Application.Common;
+using ModularApp.Modules.Workspace.Application.Interfaces;
 using ModularApp.Modules.Workspace.Domain.Entities;
 
-namespace ModularApp.Modules.Workspace.Infrastructure.Persistence;
+namespace ModularApp.Modules.Workspace.Application.Engines;
 
-public class ApplicationDbContextInitializer
+public class CharacterEngine : ICharacterEngine
 {
-    private readonly ILogger<ApplicationDbContextInitializer> _logger;
-    private readonly ApplicationDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ApplicationDbContextInitializer(
-        ILogger<ApplicationDbContextInitializer> logger,
-        ApplicationDbContext context)
+    public CharacterEngine(IUnitOfWork unitOfWork)
     {
-        _logger = logger;
-        _context = context;
+        _unitOfWork = unitOfWork;
     }
-    
-    /*
-     * 'EnsureCreatedAsync' does **not** use migrations to create the database.
-     * NB! In addition, the database that is created cannot be later updated using migrations.
-     *
-     * If you are targeting a relational database and using migrations 'MigrateAsync' to ensure the database is created using migrations and that all migrations have been applied.
-     */
-    public async Task InitialiseAsync(IConfiguration configuration)
-    {
-        try
-        {
-            if (!_context.Database.IsSqlServer())
-                return;
 
-            switch (configuration.GetValue<string>("DbInitializeMode"))
-            {
-                case "ResetOnEachStartupWithoutMigration":
-                {
-                    await _context.Database.EnsureDeletedAsync();
-                    
-                    var isCreated = await _context.Database.EnsureCreatedAsync();
-                    if (isCreated) break;
-                    
-                    throw new Exception("Database not created.");
-                }
-                case "DoNotResetOnEachStartUpWithMigration":
-                {
-                    await _context.Database.MigrateAsync();
-                    
-                    break;
-                }
-                case "DoNotResetOnEachStartUpWithoutMigration":
-                {
-                    var isCreated = await _context.Database.EnsureCreatedAsync();
-                    if (isCreated) break;
-                    
-                    throw new Exception("Database not created.");
-                }
-                default:
-                {
-                    var isCreated = await _context.Database.EnsureCreatedAsync();
-                    if (isCreated) break;
-
-                    throw new Exception("Database not created.");
-                }
-            }
-            
-            
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while initialising the database");
-            
-            throw;
-        }
-    }
-    
-    public async Task SeedAsync()
+    public async Task<List<Character>> TestCreateCharacterAsync(CancellationToken ct)
     {
-        try
-        {
-            await TrySeedAsync();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while seeding the database");
-            
-            throw;
-        }
-    }
-    
-    private async Task TrySeedAsync()
-    {
-        // TODO - Default roles
-        
-        // Default users
+        // One
         var characters = new List<Character>
         {
             new()
@@ -206,12 +129,35 @@ public class ApplicationDbContextInitializer
                 Source = "WaniKani",
             }
         };
-
-        if (!_context.Characters.Any())
+        
+        try
         {
-            await _context.Characters.AddRangeAsync(characters);
+            await _unitOfWork.BeginTransactionAsync(ct);
+            try
+            {
+                await _unitOfWork.AddRangeAsync(characters, ct);
 
-            await _context.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync(ct);
+
+                await _unitOfWork.CommitTransactionAsync(ct);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsync(ct);
+            
+                // TODO What to do when exception? Make a standard way to return a Result object with fault state.
+
+                throw;
+            }
         }
+        catch (Exception e)
+        {
+            var message = e.ToString();
+            // TODO what to do if cancellation token on BeginTransactionAsync?
+            
+            throw new Exception(message);
+        }
+        
+        return characters;
     }
 }

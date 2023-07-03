@@ -5,9 +5,8 @@ namespace ModularApp.Modules.Workspace.Application.Common;
 
 public interface IApplicationDbContext
 {
-    DbSet<Domain.Entities.Workspace> Workspaces { get; }
-    DbSet<WorkspaceMember> WorkspaceMembers { get; }
-    DbSet<User> Users { get; }
-    DbSet<Project> Projects { get; }
-    DbSet<ProjectMember> ProjectMembers { get; }
+    DbSet<Character> Characters { get; }
+    DbSet<ContextSentence> ContextSentences { get; }
+    DbSet<Meaning> Meanings { get; set; }
+    DbSet<Reading> Readings { get; set; }
 }

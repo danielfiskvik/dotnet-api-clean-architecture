@@ -9,8 +9,8 @@ public static class ConfigureModule
 {
     public static IServiceCollection AddApplicationModule(this IServiceCollection services)
     {
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IUserEngine, UserEngine>();
+        services.AddScoped<ICharacterEngine, CharacterEngine>();
+        services.AddScoped<ICharacterRepository, CharacterRepository>();
 
         return services;
     }
