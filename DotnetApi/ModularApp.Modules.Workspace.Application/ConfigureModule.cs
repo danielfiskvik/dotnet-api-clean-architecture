@@ -11,7 +11,7 @@ public static class ConfigureModule
     {
         services.AddScoped<ICharacterEngine, CharacterEngine>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
-
+        
         return services;
     }
 }

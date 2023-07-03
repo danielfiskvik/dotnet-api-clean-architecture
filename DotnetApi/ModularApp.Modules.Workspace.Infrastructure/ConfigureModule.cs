@@ -2,6 +2,9 @@ using ModularApp.Modules.Workspace.Application.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
+using ModularApp.Modules.Workspace.Application.Interfaces;
+using ModularApp.Modules.Workspace.Infrastructure.Integrations;
 using ModularApp.Modules.Workspace.Infrastructure.Persistence;
 using ModularApp.Modules.Workspace.Infrastructure.Persistence.Interceptors;
 
@@ -54,6 +57,8 @@ public static class ConfigureModule
                     // .AddInterceptors()
                 );
         }
+
+        services.ConfigureHttpClients();
         
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         
@@ -89,6 +94,26 @@ public static class ConfigureModule
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddTransient<IRepository, Repository>();
         
+        services.AddScoped<IWaniKaniIntegrationService, WaniKaniIntegrationService>();
+        
+        return services;
+    }
+
+    private static IServiceCollection ConfigureHttpClients(this IServiceCollection services)
+    {
+        services
+            .AddHttpClient("WaniKaniHttpClient", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri("https://www.wanikani.com");
+
+                // using Microsoft.Net.Http.Headers;
+                // The GitHub API requires two headers.
+                // httpClient.DefaultRequestHeaders.Add(
+                //     HeaderNames.Accept, "application/vnd.github.v3+json");
+                // httpClient.DefaultRequestHeaders.Add(
+                //     HeaderNames.UserAgent, "HttpRequestsSample");
+            });
+
         return services;
     }
 }
