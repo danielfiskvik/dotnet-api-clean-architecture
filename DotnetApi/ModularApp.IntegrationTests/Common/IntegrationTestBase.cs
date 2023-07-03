@@ -49,6 +49,7 @@ public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
         /*
         if (_currentUserId is not null)
             return _currentUserId.Value;
+        */
 
         using var scope = _factory.Services.CreateScope();
 
@@ -61,7 +62,7 @@ public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
 
         if (unitOfWork == null)
             return Guid.Empty;
-        
+        /*
         _currentUserId = await unitOfWork.ApplicationDbContext.Users
             .Where(x => x.UserName == "UserName")
             .Select(x => x.Id)

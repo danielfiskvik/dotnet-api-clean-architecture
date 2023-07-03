@@ -7,8 +7,8 @@ public partial class ApplicationDbContext
 {
     // Domains
 
-    public DbSet<Character> Characters { get; }
-    public DbSet<ContextSentence> ContextSentences { get; }
+    public DbSet<Character> Characters { get; set; }
+    public DbSet<ContextSentence> ContextSentences { get; set;  }
     public DbSet<Meaning> Meanings { get; set; }
     public DbSet<Reading> Readings { get; set; }
 }
