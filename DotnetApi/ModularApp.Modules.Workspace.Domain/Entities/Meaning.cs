@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ModularApp.Modules.Workspace.Domain.Interfaces;
 
 namespace ModularApp.Modules.Workspace.Domain.Entities;
 
-public class Meaning {
+public class Meaning : IEntity
+{
     [Key]
     public Guid Id { get; set; }
     public string Value { get; set; } // One
@@ -16,5 +18,4 @@ public class Meaning {
     #region NavigationProperties
     public Character Character { get; set; }
     #endregion
-    
 }

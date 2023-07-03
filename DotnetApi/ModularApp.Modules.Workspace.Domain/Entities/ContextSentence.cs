@@ -1,7 +1,12 @@
-﻿namespace ModularApp.Modules.Workspace.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using ModularApp.Modules.Workspace.Domain.Interfaces;
 
-public class ContextSentence
+namespace ModularApp.Modules.Workspace.Domain.Entities;
+
+public class ContextSentence : IEntity
 {
+    [Key]
+    public Guid Id { get; set; }
     public string En { get; set; } = null!;
     public string Ja { get; set; } = null!;
     
