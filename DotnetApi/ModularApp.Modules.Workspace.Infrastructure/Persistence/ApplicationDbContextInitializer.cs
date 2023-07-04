@@ -42,6 +42,14 @@ public class ApplicationDbContextInitializer
                     
                     throw new Exception("Database not created.");
                 }
+                case "ResetOnEachStartupWithMigration":
+                {
+                    await _context.Database.EnsureDeletedAsync();
+                    
+                    await _context.Database.MigrateAsync();
+                    
+                    break;
+                }
                 case "DoNotResetOnEachStartUpWithMigration":
                 {
                     await _context.Database.MigrateAsync();
@@ -63,8 +71,6 @@ public class ApplicationDbContextInitializer
                     throw new Exception("Database not created.");
                 }
             }
-            
-            
         }
         catch (Exception ex)
         {
@@ -207,11 +213,13 @@ public class ApplicationDbContextInitializer
             }
         };
 
-        if (!_context.Characters.Any())
-        {
-            await _context.Characters.AddRangeAsync(characters);
+        // if (!_context.Characters.Any())
+        // {
+        //     await _context.Characters.AddRangeAsync(characters);
+        //
+        //     await _context.SaveChangesAsync();
+        // }
 
-            await _context.SaveChangesAsync();
-        }
+        await Task.FromResult(string.Empty);
     }
 }

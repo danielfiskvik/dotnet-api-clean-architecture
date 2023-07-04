@@ -1,6 +1,6 @@
 ﻿using HtmlAgilityPack;
 
-namespace ModularApp.Modules.Workspace.ArchitectureTests;
+namespace ModularApp.Modules.Workspace.Application.Helpers;
 
 public static class HtmlNodeHelper
 {

@@ -1,7 +1,7 @@
 ﻿using HtmlAgilityPack;
 using ModularApp.Modules.Workspace.Domain.Entities;
 
-namespace ModularApp.Modules.Workspace.ArchitectureTests;
+namespace ModularApp.Modules.Workspace.Application.Helpers;
 
 public static class KanjiHtmlParserHelper
 {

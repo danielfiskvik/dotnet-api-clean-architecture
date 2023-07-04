@@ -61,7 +61,9 @@ public class Character : IEntity, ICreateable, IModifiable
     // Metadata
     public int Level { get; set; }
     public int LessonPosition { get; set; }
+    [MaxLength(200)]
     public string Source { get; set; } = null!;
+    [MaxLength(2000)]
     public string? ExternalUrl { get; set; } 
     
     #region NavigationProperties

@@ -2,5 +2,5 @@
 
 public interface IWaniKaniIntegrationService
 {
-    
+    Task<(string?, bool)> GetHtmlAsStringAsync(string href, CancellationToken ct);
 }

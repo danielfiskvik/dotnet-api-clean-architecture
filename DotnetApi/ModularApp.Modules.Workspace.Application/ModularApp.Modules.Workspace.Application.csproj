@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <PackageReference Include="Faker.Net" Version="2.0.154" />
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.48" />
       <PackageReference Include="MediatR" Version="11.1.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
     </ItemGroup>
@@ -20,4 +21,26 @@
       <Folder Include="Queries\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Assets\KanjiResponse.html" />
+      <Content Include="Assets\KanjiResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\RadicalResponse.html" />
+      <Content Include="Assets\RadicalResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\RememberingTheKanjiList.txt" />
+      <Content Include="Assets\RememberingTheKanjiList.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\SearchResponse.html" />
+      <Content Include="Assets\SearchResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\VocabularyResponse.html" />
+      <Content Include="Assets\VocabularyResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
 </Project>

@@ -9,4 +9,6 @@ public interface IApplicationDbContext
     DbSet<ContextSentence> ContextSentences { get; }
     DbSet<Meaning> Meanings { get; set; }
     DbSet<Reading> Readings { get; set; }
+    // ReSharper disable once IdentifierTypo
+    DbSet<CharacterMetadata> CharacterMetadatas { get; set; }
 }
