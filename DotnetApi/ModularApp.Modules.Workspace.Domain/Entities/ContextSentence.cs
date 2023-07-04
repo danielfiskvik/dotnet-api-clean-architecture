@@ -15,6 +15,6 @@ public class ContextSentence : IEntity
     #endregion
     
     #region NavigationProperties
-    public Character Character { get; set; }
+    public Character? Character { get; set; }
     #endregion
 }

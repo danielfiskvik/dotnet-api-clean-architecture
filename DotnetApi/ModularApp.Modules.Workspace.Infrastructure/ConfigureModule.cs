@@ -91,8 +91,8 @@ public static class ConfigureModule
          * TODO:
          * Maybe add a flag in configuration that if graphql is used then DI should be Transient, if not UnitOfWork should be Scoped.
          */
-        services.AddTransient<IUnitOfWork, UnitOfWork>();
-        services.AddTransient<IRepository, Repository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IRepository, Repository>();
         
         services.AddScoped<IWaniKaniIntegrationService, WaniKaniIntegrationService>();
         

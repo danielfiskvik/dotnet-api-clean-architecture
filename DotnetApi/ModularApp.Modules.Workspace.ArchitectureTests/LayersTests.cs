@@ -42,10 +42,10 @@ public class LayersTests : TestBase
     // TODO Test with an url you know does not work..
     // TODO Test with Person and check if it has more data
     [Test]
-    public void MyTest()
+    public async Task MyTest()
     {
-        var service = new CharacterMetadataService(default, default);
+        var service = new CharacterMetadataService(default!, default!);
         
-        service.FetchDataAsync(default, default, default, default);
+        await service.FetchDataAsync(default!, default, default!, default);
     }
 }

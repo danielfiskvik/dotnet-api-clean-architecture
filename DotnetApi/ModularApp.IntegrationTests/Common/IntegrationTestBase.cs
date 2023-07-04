@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
@@ -13,8 +12,12 @@ public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
     
+#pragma warning disable CS0649
     private Guid? _currentUserId;
+#pragma warning restore CS0649
+#pragma warning disable CS0649
     private int? _existingUsersCount;
+#pragma warning restore CS0649
 
     protected IntegrationTestBase(WebApplicationFactory<Program> factory)
     {

@@ -26,7 +26,7 @@ public class CharacterMetadataService : ICharacterMetadataService
         // var currentDirectory = Directory.GetCurrentDirectory();
         
         var asm = Assembly.GetExecutingAssembly();
-        var currentDirectory = Path.GetDirectoryName(asm.Location);
+        var currentDirectory = Path.GetDirectoryName(asm.Location) ?? string.Empty;
 
         // Step 1: Read all kanji's to download from file
         var kanjiFilePath = Path.Combine(currentDirectory, "Assets", "RememberingTheKanjiList.txt");
@@ -38,6 +38,12 @@ public class CharacterMetadataService : ICharacterMetadataService
         
         // const string kanji = "一";
         const string source = "WaniKani";
+
+        var anyCharactersToFetch = await _unitOfWork.ApplicationDbContext.CharacterMetadatas
+            .AnyAsync(x => x.Source == source && !kanjiList.Contains(x.Characters), ct);
+        
+        if (!anyCharactersToFetch)
+            Console.WriteLine("Hurray!");
 
         var level = 1;
         foreach (var kanji in kanjiList)
