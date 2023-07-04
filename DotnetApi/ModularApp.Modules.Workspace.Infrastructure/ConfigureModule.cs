@@ -50,12 +50,13 @@ public static class ConfigureModule
         else
         {
             services.AddDbContext<ApplicationDbContext>(options => options
-                .UseSqlServer(
-                    configuration.GetConnectionString("TestConnection")
-                    //, builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
+                    .UseSqlServer(
+                        configuration.GetConnectionString("TestConnection"),
+                        o =>  o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
+                        //, builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
                     )
-                    // .AddInterceptors()
-                );
+                // .AddInterceptors()
+            );
         }
 
         services.ConfigureHttpClients();

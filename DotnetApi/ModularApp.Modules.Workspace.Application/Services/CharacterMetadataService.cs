@@ -50,11 +50,14 @@ public class CharacterMetadataService : ICharacterMetadataService
         {
             try
             {
-                var characterMetadata = await _unitOfWork.ApplicationDbContext.CharacterMetadatas
+                Console.WriteLine($"Check if kanji '{kanji}' exists.");
+
+                var isMigrated = await _unitOfWork.ApplicationDbContext.CharacterMetadatas
                     .Where(x => x.Characters == kanji && x.Source == source)
+                    .Select(x => x.IsMigrated)
                     .FirstOrDefaultAsync(ct);
 
-                if (characterMetadata?.IsMigrated == true)
+                if (isMigrated)
                 {
                     level++;
                     continue;
@@ -141,6 +144,10 @@ public class CharacterMetadataService : ICharacterMetadataService
                         Status = e.Message,
                     };
                 }
+                
+                var characterMetadata = await _unitOfWork.ApplicationDbContext.CharacterMetadatas
+                    .Where(x => x.Characters == kanji && x.Source == source)
+                    .FirstOrDefaultAsync(ct);
             
                 // Post
                 if (characterMetadata == null)
@@ -167,66 +174,6 @@ public class CharacterMetadataService : ICharacterMetadataService
                 Console.WriteLine(e);
                 throw;
             }
-        }
-    }
-
-    public async Task<CharacterMetadata> FetchDataAsync(string kanji, int level, string source, CancellationToken ct)
-    {
-        try
-        {
-            // Step 2. Fetch always "/kanji" first since it is kanji we are searching for (guarantee match)
-            var (kanjiCharacter, hrefOrError1, succeeded1) = await FetchKanjiAndMapToCharacterAsync(
-                kanji, level, 2, ct);
-        
-            var (vocabularyCharacter, hrefOrError2, succeeded2) = await FetchVocabularyAndMapToCharacterAsync(
-                kanji, level, 3, ct);
-        
-            var (radicalCharacter, error, succeeded3) = await FetchRadicalAndMapToCharacterAsync(
-                kanji, hrefOrError1 ?? hrefOrError2 ?? string.Empty, level, 1, ct);
-        
-            // Step 3. Make html and update status
-            var generatedHtml = WaniKaniHtmlToAnkiHtmlHelper.MakeHtml(
-                radicalCharacter: radicalCharacter,
-                kanjiCharacter: kanjiCharacter,
-                vocabularyCharacter: vocabularyCharacter);
-
-            generatedHtml = generatedHtml.Replace("</br>", "");
-
-            var status = "";
-            
-            status += !succeeded3
-                ? $"Radical: {error}.{Environment.NewLine}"
-                : $"Radical: No error.{Environment.NewLine}";
-            
-            status += !succeeded1
-                ? $"Kanji: {hrefOrError1}.{Environment.NewLine}"
-                : $"Kanji: No error.{Environment.NewLine}";
-            
-            status += !succeeded2
-                ? $"Vocabulary: {hrefOrError2}.{Environment.NewLine}"
-                : $"Vocabulary: No error.{Environment.NewLine}";
-
-            var characterMetadata = new CharacterMetadata
-            {
-                Characters = kanji,
-                Source = source,
-                IsMigrated = succeeded1 && succeeded2 && succeeded3, // If all is successful
-                Html = generatedHtml,
-                Status = status
-            };
-
-            return characterMetadata;
-        }
-        catch (Exception e)
-        {
-            return new CharacterMetadata
-            {
-                Characters = kanji,
-                Source = source,
-                IsMigrated = false,
-                Html = null,
-                Status = e.Message,
-            };
         }
     }
 

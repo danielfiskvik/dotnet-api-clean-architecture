@@ -21,6 +21,7 @@ public class CharacterRepository : ICharacterRepository
             .Include(x => x.Meanings)
             .Include(x => x.Readings)
             .Include(x => x.ContextSentences)
+            .AsNoTracking()
             .ToListAsync(ct);
     }
 }

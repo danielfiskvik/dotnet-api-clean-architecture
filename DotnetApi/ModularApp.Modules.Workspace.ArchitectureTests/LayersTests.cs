@@ -1,4 +1,3 @@
-using ModularApp.Modules.Workspace.Application.Services;
 using ModularApp.Modules.Workspace.ArchitectureTests.Common;
 using NetArchTest.Rules;
 
@@ -37,15 +36,5 @@ public class LayersTests : TestBase
             .GetResult();
 
         AssertArchTestResult(result);
-    }
-    
-    // TODO Test with an url you know does not work..
-    // TODO Test with Person and check if it has more data
-    [Test]
-    public async Task MyTest()
-    {
-        var service = new CharacterMetadataService(default!, default!);
-        
-        await service.FetchDataAsync(default!, default, default!, default);
     }
 }
