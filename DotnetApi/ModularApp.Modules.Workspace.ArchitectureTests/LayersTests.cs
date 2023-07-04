@@ -69,7 +69,8 @@ public class LayersTests : TestBase
             LessonPosition = 3
         };
         
-        vocabularyCharacter.CopDataFromHtmlDocument(vocabularyHtmlDocument);
+        vocabularyCharacter.CopyDataFromHtmlDocument(vocabularyHtmlDocument);
+        vocabularyCharacter.ConvertCharacterPropertiesToAnkiHtml();
         #endregion
         
         #region Fetch, parse, and make object from "/kanji"
@@ -95,7 +96,8 @@ public class LayersTests : TestBase
             LessonPosition = 2
         };
 
-        kanjiCharacter.CopDataFromHtmlDocument(kanjiHtmlDocument);
+        kanjiCharacter.CopyDataFromHtmlDocument(kanjiHtmlDocument);
+        kanjiCharacter.ConvertCharacterPropertiesToAnkiHtml();
         
         // Assert
         Assert.NotNull(kanjiCharacter);
@@ -109,6 +111,7 @@ public class LayersTests : TestBase
             .Select(x => x.GetAttributeValue("href", ""))
             .FirstOrDefault();
 
+        Character? radicalCharacter = null;
         if (!string.IsNullOrEmpty(radicalHref))
         {
             var radicalResponseFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "MockFiles", "RadicalResponse.html");
@@ -120,7 +123,7 @@ public class LayersTests : TestBase
             var radicalHtmlDocument = new HtmlDocument();
             radicalHtmlDocument.LoadHtml(radicalResponseFileContent);
             
-            var radicalCharacter = new Character
+            radicalCharacter = new Character
             {
                 Characters = kanjii,
                 Type = "Radical",
@@ -130,8 +133,16 @@ public class LayersTests : TestBase
                 LessonPosition = 1
             };
             
-            radicalCharacter.CopDataFromHtmlDocument(radicalHtmlDocument);
+            radicalCharacter.CopyDataFromHtmlDocument(radicalHtmlDocument);
+            radicalCharacter.ConvertCharacterPropertiesToAnkiHtml();
         }
         #endregion
+
+        var res = WaniKaniHtmlToAnkiHtmlHelper.MakeHtml(
+            radicalCharacter: radicalCharacter,
+            kanjiCharacter: kanjiCharacter,
+            vocabularyCharacter: vocabularyCharacter);
+
+        res = res.Replace("</br>", "");
     }
 }

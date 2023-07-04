@@ -5,7 +5,7 @@ namespace ModularApp.Modules.Workspace.ArchitectureTests;
 
 public static class KanjiHtmlParserHelper
 {
-    public static void CopDataFromHtmlDocument(this Character character, HtmlDocument htmlDocument)
+    public static void CopyDataFromHtmlDocument(this Character character, HtmlDocument htmlDocument)
     {
         character.SetMeaning(htmlDocument);
 
@@ -46,6 +46,7 @@ public static class KanjiHtmlParserHelper
         {
             var primaryMeaning = new Meaning
             {
+                Type = "Primary",
                 Value = primaryMeaningValue,
                 IsPrimary = true,
                 WordType = wordType
@@ -67,6 +68,7 @@ public static class KanjiHtmlParserHelper
         {
             var alternativeMeaning = new Meaning
             {
+                Type = "Alternative",
                 Value = alternativeMeaningValue,
                 IsPrimary = false,
                 WordType = wordType
