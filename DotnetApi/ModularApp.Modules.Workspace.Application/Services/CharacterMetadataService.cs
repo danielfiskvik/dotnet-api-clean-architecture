@@ -54,6 +54,7 @@ public class CharacterMetadataService : ICharacterMetadataService
 
                 var isMigrated = await _unitOfWork.ApplicationDbContext.CharacterMetadatas
                     .Where(x => x.Characters == kanji && x.Source == source)
+                    .AsNoTracking()
                     .Select(x => x.IsMigrated)
                     .FirstOrDefaultAsync(ct);
 

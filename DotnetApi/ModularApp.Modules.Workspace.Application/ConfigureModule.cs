@@ -14,6 +14,7 @@ public static class ConfigureModule
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         
         services.AddScoped<ICharacterMetadataService, CharacterMetadataService>();
+        services.AddScoped<IWriteAnkiFileService, WriteAnkiFileService>();
         
         return services;
     }

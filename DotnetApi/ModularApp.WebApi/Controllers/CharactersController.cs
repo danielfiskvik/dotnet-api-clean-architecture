@@ -13,17 +13,20 @@ public class CharactersController
     private readonly ICharacterRepository _characterRepository;
     private readonly IRepository _repository;
     private readonly ICharacterMetadataService _characterMetadataService;
+    private readonly IWriteAnkiFileService _writeAnkiFileService;
 
     public CharactersController(
         ICharacterEngine characterEngine,
         ICharacterRepository characterRepository,
         IRepository repository,
-        ICharacterMetadataService characterMetadataService)
+        ICharacterMetadataService characterMetadataService,
+        IWriteAnkiFileService writeAnkiFileService)
     {
         _characterEngine = characterEngine;
         _characterRepository = characterRepository;
         _repository = repository;
         _characterMetadataService = characterMetadataService;
+        _writeAnkiFileService = writeAnkiFileService;
     }
     
     [HttpGet]
@@ -46,5 +49,11 @@ public class CharactersController
         await _characterMetadataService.BeginSyncJobAsync(ct);
 
         return _repository.SecureWithNoTracking<Character>();
+    }
+    
+    [HttpPost("MakeAnkiDeck")]
+    public async Task MakeAnkiDeckAsync(CancellationToken ct)
+    {
+        await _writeAnkiFileService.MakeAnkiDeckAsync(ct);
     }
 }
