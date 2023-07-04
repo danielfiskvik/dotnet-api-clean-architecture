@@ -30,7 +30,7 @@ public class WriteAnkiFileService : IWriteAnkiFileService
 
         var lines = new List<string>
         {
-            "#separator:tab",
+            "#separator:pipe",
             "#html:true"
         };
 
@@ -51,8 +51,13 @@ public class WriteAnkiFileService : IWriteAnkiFileService
             
             if (character == null)
                 continue;
+
+            // TODO The code below is temp fix.
+            var html = (character.Html ?? string.Empty).Replace("\r\n", "");
+            html = html.Replace("\r", "");
+            html = html.Replace("\n", "");
             
-            lines.Add($"{character.Characters}\t{character.Html}");
+            lines.Add($"{character.Characters}|{html}");
             
             // ReSharper disable once InvertIf
             if (level % 100 == 0)
