@@ -50,7 +50,6 @@ public class LayersTests : TestBase
         const int level = 1;
         
         #region Fetch, parse, and make object from "/vocabulary/{kanji}
-        // TODO Load radical html
         var vocabularyResponseFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "MockFiles", "VocabularyResponse.html");
         var vocabularyResponseFileContent = File.ReadAllText(vocabularyResponseFilePath);
 
@@ -112,7 +111,6 @@ public class LayersTests : TestBase
 
         if (!string.IsNullOrEmpty(radicalHref))
         {
-            // TODO Load radical html
             var radicalResponseFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "MockFiles", "RadicalResponse.html");
             var radicalResponseFileContent = File.ReadAllText(radicalResponseFilePath);
 

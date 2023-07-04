@@ -48,7 +48,7 @@ public static class KanjiHtmlParserHelper
             {
                 Value = primaryMeaningValue,
                 IsPrimary = true,
-                // TODO WordType = wordType
+                WordType = wordType
             };
             
             meanings.Add(primaryMeaning);
@@ -69,7 +69,7 @@ public static class KanjiHtmlParserHelper
             {
                 Value = alternativeMeaningValue,
                 IsPrimary = false,
-                // TODO WordType = wordType
+                WordType = wordType
             };
             
             meanings.Add(alternativeMeaning);
@@ -107,18 +107,19 @@ public static class KanjiHtmlParserHelper
         // ReSharper disable once InvertIf
         if (mnemonicNodeChild != null)
         {
-            var meaningMnemonic = mnemonicNodeChild.ParentNode
+            var meaningMnemonicNode = mnemonicNodeChild.ParentNode
                 .TrySelectNodesOrDefault(meaningSectionNode.XPath, "subject-section__text")
-                .FirstOrDefault()
-                ?.InnerHtml;
+                .FirstOrDefault();
             
-            var meaningHint = mnemonicNodeChild.ParentNode
+            var meaningHintNode = mnemonicNodeChild.ParentNode
                 .TrySelectNodesOrDefault(meaningSectionNode.XPath, "subject-hint__text")
-                .FirstOrDefault()
-                ?.InnerHtml; // InnerText
+                .FirstOrDefault();
 
-            character.MeaningMnemonic = meaningMnemonic;
-            character.MeaningHint = meaningHint;
+            character.MeaningMnemonic = meaningMnemonicNode?.InnerHtml; // TODO Convert to Anki?
+            character.MeaningMnemonicOriginal = meaningMnemonicNode?.InnerHtml;
+
+            character.MeaningMnemonicHint = meaningHintNode?.InnerHtml; // TODO Convert to Anki?
+            character.MeaningMnemonicHintOriginal = meaningHintNode?.InnerHtml;
         }
         #endregion
         
@@ -130,18 +131,19 @@ public static class KanjiHtmlParserHelper
         // ReSharper disable once InvertIf
         if (explanationNodeChild != null)
         {
-            var meaningExplanation = explanationNodeChild.ParentNode
+            var meaningExplanationNode = explanationNodeChild.ParentNode
                 .TrySelectNodesOrDefault(meaningSectionNode.XPath, "subject-section__text")
-                .FirstOrDefault()
-                ?.InnerHtml;
+                .FirstOrDefault();
             
-            var meaningExplanationHint = explanationNodeChild.ParentNode
+            var meaningExplanationHintNode = explanationNodeChild.ParentNode
                 .TrySelectNodesOrDefault(meaningSectionNode.XPath, "subject-hint__text")
-                .FirstOrDefault()
-                ?.InnerHtml; // InnerText
+                .FirstOrDefault();
 
-            character.MeaningMnemonic = meaningExplanation; // TODO? MeaningExplanation instead of Mnemonics?
-            character.MeaningHint = meaningExplanationHint; // TODO? MeaningExplanationHint instead of Mnemonics?
+            character.MeaningExplanation = meaningExplanationNode?.InnerHtml; // TODO Convert to Anki?
+            character.MeaningExplanationOriginal = meaningExplanationNode?.InnerHtml;
+
+            character.MeaningExplanationHint = meaningExplanationHintNode?.InnerHtml; // TODO Convert to Anki?
+            character.MeaningExplanationHintOriginal = meaningExplanationHintNode?.InnerHtml;
         }
         #endregion
     }
@@ -205,7 +207,7 @@ public static class KanjiHtmlParserHelper
         // ReSharper disable once InvertIf
         if (readingMnemonicSectionNode != null)
         {
-            var readingMnemonicMode = readingMnemonicSectionNode
+            var readingMnemonicNode = readingMnemonicSectionNode
                 .TrySelectNodesOrDefault(readingMnemonicSectionNode.XPath, "subject-section__text")
                 .FirstOrDefault();
 
@@ -213,8 +215,11 @@ public static class KanjiHtmlParserHelper
                 .TrySelectNodesOrDefault(readingMnemonicSectionNode.XPath, "subject-hint__text")
                 .FirstOrDefault();
             
-            character.ReadingMnemonic = readingMnemonicMode?.InnerHtml;
-            character.ReadingHint = readingHintNode?.InnerHtml; // InnerText removes html, maybe we need both one with html and another without?
+            character.ReadingMnemonic = readingMnemonicNode?.InnerHtml; // TODO Convert to Anki?
+            character.ReadingMnemonicOriginal = readingMnemonicNode?.InnerHtml;
+
+            character.ReadingMnemonicHint = readingHintNode?.InnerHtml; // TODO Convert to Anki?
+            character.ReadingMnemonicHintOriginal = readingHintNode?.InnerHtml;
         }
         #endregion
         
@@ -226,18 +231,19 @@ public static class KanjiHtmlParserHelper
         // ReSharper disable once InvertIf
         if (explanationNodeChild != null)
         {
-            var meaningExplanation = explanationNodeChild.ParentNode
+            var meaningExplanationNode = explanationNodeChild.ParentNode
                 .TrySelectNodesOrDefault(readingSectionNode.XPath, "subject-section__text")
-                .FirstOrDefault()
-                ?.InnerHtml;
+                .FirstOrDefault();
             
-            var meaningExplanationHint = explanationNodeChild.ParentNode
+            var meaningExplanationHintNode = explanationNodeChild.ParentNode
                 .TrySelectNodesOrDefault(readingSectionNode.XPath, "subject-hint__text")
-                .FirstOrDefault()
-                ?.InnerHtml; // InnerText
+                .FirstOrDefault();
 
-            character.ReadingMnemonic = meaningExplanation; // TODO? MeaningExplanation instead of ReadingMnemonic?
-            character.ReadingHint = meaningExplanationHint; // TODO? MeaningExplanationHint instead of ReadingHint?
+            character.ReadingExplanation = meaningExplanationNode?.InnerHtml; // TODO Convert to Anki?
+            character.ReadingExplanationOriginal = meaningExplanationNode?.InnerHtml;
+
+            character.ReadingExplanationHint = meaningExplanationHintNode?.InnerHtml; // TODO Convert to Anki?
+            character.ReadingExplanationHintOriginal = meaningExplanationHintNode?.InnerHtml;
         }
         #endregion
     }
