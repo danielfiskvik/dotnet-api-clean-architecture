@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.48" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
         <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
         <PackageReference Include="NUnit" Version="3.13.3" />
@@ -22,5 +23,24 @@
       <ProjectReference Include="..\ModularApp.Modules.Workspace.Application\ModularApp.Modules.Workspace.Application.csproj" />
       <ProjectReference Include="..\ModularApp.Modules.Workspace.Domain\ModularApp.Modules.Workspace.Domain.csproj" />
       <ProjectReference Include="..\ModularApp.Modules.Workspace.Infrastructure\ModularApp.Modules.Workspace.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="MockFiles\KanjiResponse.html" />
+      <Content Include="MockFiles\KanjiResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="MockFiles\RadicalResponse.html" />
+      <Content Include="MockFiles\RadicalResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="MockFiles\SearchResponse.html" />
+      <Content Include="MockFiles\SearchResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="MockFiles\VocabularyResponse.html" />
+      <Content Include="MockFiles\VocabularyResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 </Project>
