@@ -7,9 +7,10 @@ public class Meaning : IEntity
 {
     [Key]
     public Guid Id { get; set; }
-    public string Value { get; set; } // One
+
+    public string Value { get; set; } = null!;// One
     public bool IsPrimary { get; set; } // true
-    public bool WordType { get; set; } // 
+    public bool WordType { get; set; } // TODO
     
     #region Relations
     public int CharacterId { get; set; }
