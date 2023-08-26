@@ -31,15 +31,16 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <None Remove="Assets\RememberingTheKanjiList.txt" />
-      <Content Include="Assets\RememberingTheKanjiList.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
       <None Remove="Assets\SearchResponse.html" />
       <Content Include="Assets\SearchResponse.html">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <None Remove="Assets\VocabularyResponse.html" />
       <Content Include="Assets\VocabularyResponse.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\RememberingTheKanji1Explaination.txt" />
+      <Content Include="Assets\RememberingTheKanji1Explaination.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

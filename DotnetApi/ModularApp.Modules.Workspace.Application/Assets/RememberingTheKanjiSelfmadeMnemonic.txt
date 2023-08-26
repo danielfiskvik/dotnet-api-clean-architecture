@@ -90,7 +90,7 @@
 召,
 昭,
 則,
-副,
+副,<h1>My own mnemonic</h1><div>When you are <i>wealth</i>y and <i>rich</i> then you are probably <b>vice</b>. You have also a <i>sword</i> to protect yourself. When you have an abundance with food and power (sword), then everyone is on your <b>side</b>.</div>
 別,
 丁,
 町,
@@ -210,7 +210,7 @@
 桂,
 柏,
 枠,
-梢,
+梢,<h1>My own mnemonic</h1><div>What is sparkling on the top of the trees? It's the grains on the treetops.&nbsp;</div>
 棚,
 杏,
 桐,
@@ -229,7 +229,7 @@
 未,
 末,
 昧,
-沫,
+沫,<h1>My own mnemonic</h1><div>You are washing the <i>modified</i> <i>jet </i>with water. You must throw water to make the jet clean. It has to give a specific <b>SPLASH </b>sound in order to be clean.</div>
 味,
 妹,
 朱,
@@ -254,7 +254,7 @@
 状,
 黙,
 然,
-荻,
+荻,<h1>My own mnemonic</h1><div>When wild <i>fires</i> is spreading <i>animals </i>need to take shelter in <i>flower</i>y <b>reeds</b>.</div>
 狩,
 猫,
 牛,
@@ -273,9 +273,9 @@
 宝,
 珠,
 現,
-玩,
+玩,<h1>My own mnemonic</h1><div>A <i>king's origin</i> is to play with <b>toy</b>. The toys can be everything, a person or a thing, and these <b>toys</b> are the king's plaything. King's in the origin was treasuring these <b>toys</b>, some making sport of them, or simply just toying with them - in almost like a mockery or ridicule way. It's sad to hear but a king's origin was not good from the beginning.</div>
 狂,
-旺,
+旺,<h1>My own mnemonic</h1><div>When the people sees a <i>king</i> like a <i>sun</i>, then we know the <i>king</i> is a good <i>king</i>. He has propably made the livelihood better for all the citizen and therefore he is quite <b>successfull</b> one. For years people will tell story of a <i>king</i> so <b>beautiful</b> and <b>vigorous</b> that these stories will <b>flourish</b> from generations to generations.</div>
 皇,
 呈,
 全,
@@ -306,7 +306,7 @@
 軌,
 輸,
 喩,
-前,
+前,<h1>My own mnemonic</h1><div><h4>Vocabulary</h4></div><div>Kun'yomi</div><div>Upon close inspection, it turns out that the object is moving very quickly around you, which makes it seem as if the object is always <b>in front</b> of you. But now the object is moving so fast that it creates a <b>mae</b>lstrom (まえ).</div>
 煎,
 各,
 格,
@@ -733,7 +733,7 @@
 鼻,
 刑,
 型,
-才,
+才,<h1>My own mnemonic</h1><div><span style="background-color: rgb(255, 255, 255);">The meaning of&nbsp;</span><span style="background-color: rgb(255, 255, 255);">才 is not only "<b>genious</b>", but also "<b>~years old</b>".</span></div><div><span style="background-color: rgb(255, 255, 255);">As you know readings of&nbsp;</span><span style="background-color: rgb(255, 255, 255);">才</span><span style="background-color: rgb(255, 255, 255);">&nbsp;is&nbsp;</span><span style="background-color: rgb(255, 170, 255);">さい</span>. As in 十二さい or 十二才。</div>
 財,
 材,
 存,
@@ -749,7 +749,7 @@
 更,
 硬,
 梗,
-又,
+又,<h1>Remembering the kanji 1</h1><div><div>Meaning: <strong>Or again</strong>.</div><div><br></div><div><em></em><em></em>Like the several abbreviations in Roman script to indicate “and” (+, &amp;, etc.), this short two-stroke kanji is used for the similar meaning of <strong>or again</strong>. [2]</div><div><br></div><div>* As a primitive, it will mean <em>crotch</em>, as in the <em>crotch </em>of the arm. Or whatever.</div></div>
 双,
 桑,
 隻,
@@ -765,7 +765,7 @@
 設,
 撃,
 殻,
-支,
+支,<h1>Remembering the kanji 1</h1><div><div>Meaning: <strong>Branch</strong>.</div><div><br></div><div><em></em><em>Needle </em>. . . <em>crotch</em>. [4]</div></div>
 技,
 枝,
 肢,
@@ -862,7 +862,7 @@
 常,
 裳,
 掌,
-皮,
+皮,<h1>My own mnemonic</h1><div>Imagine instead of using asphalt to pave a <i>road </i>you'd use <i>tanned leather</i>. That would be very <span style="background-color: rgb(255, 170, 255);">different</span>, wouldn't it? It would also be totally wrong!<br></div><div><br></div><h3>Vocabulary</h3><div>Kun'yomi</div><div>After paving the road with tanned leather the locals got very angry. To solve this you tried to give them free cheese, but they are still angry. You tought to yourself, "<b>Chee</b>se <b>ga</b>ve I did, angry they still are". Chee + ga = "chi ga" = ちが</div>
 波,
 婆,
 披,
@@ -935,7 +935,7 @@
 脇,
 脅,
 協,
-行,
+行,<h1>Remembering the kanji 1</h1><div><div>Meaning: <strong>Going</strong>.</div><div><br></div><div><em></em>By joining the top four strokes, you should get a picture of the front current of a river, the stream trailing behind. Hence the character for <strong>going</strong>. [6]<br></div><div><br></div><div>*&nbsp;As a primitive, this character has two forms. Reduced to the left side only, ⼻, it can mean a <em>column</em>, <em>going</em>, or a <em>line </em>of something or other. When the middle is opened up to make room for other elements, it means a <em>boulevard</em>.</div></div>
 律,
 復,
 得,
@@ -945,7 +945,7 @@
 往,
 征,
 径,
-彼,
+彼,<h1>Remembering the kanji 1</h1><div><div>Meaning: <strong>He</strong>.</div><div><br></div><div><em>Going</em> . . . <em>pelt</em>. This kanji refers to the third person singular personal pronoun, generally in its masculine form. [8]</div></div>
 役,
 徳,
 徹,
