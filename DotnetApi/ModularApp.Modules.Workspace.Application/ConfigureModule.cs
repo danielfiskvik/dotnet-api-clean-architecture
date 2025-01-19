@@ -12,6 +12,7 @@ public static class ConfigureModule
     {
         services.AddScoped<ICharacterEngine, CharacterEngine>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
+        services.AddScoped<IWaniKaniToAnkiService, WaniKaniToAnkiService>();
         
         services.AddScoped<ICharacterMetadataService, CharacterMetadataService>();
         services.AddScoped<IWriteAnkiFileService, WriteAnkiFileService>();

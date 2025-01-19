@@ -7,53 +7,52 @@ namespace ModularApp.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CharactersController
+public class CharactersController(
+    ICharacterEngine characterEngine,
+    ICharacterRepository characterRepository,
+    IRepository repository,
+    ICharacterMetadataService characterMetadataService,
+    IWriteAnkiFileService writeAnkiFileService,
+    IWaniKaniToAnkiService waniKaniToAnkiService)
 {
-    private readonly ICharacterEngine _characterEngine;
-    private readonly ICharacterRepository _characterRepository;
-    private readonly IRepository _repository;
-    private readonly ICharacterMetadataService _characterMetadataService;
-    private readonly IWriteAnkiFileService _writeAnkiFileService;
 
-    public CharactersController(
-        ICharacterEngine characterEngine,
-        ICharacterRepository characterRepository,
-        IRepository repository,
-        ICharacterMetadataService characterMetadataService,
-        IWriteAnkiFileService writeAnkiFileService)
-    {
-        _characterEngine = characterEngine;
-        _characterRepository = characterRepository;
-        _repository = repository;
-        _characterMetadataService = characterMetadataService;
-        _writeAnkiFileService = writeAnkiFileService;
-    }
-    
     [HttpGet]
     public async Task<IEnumerable<Character>> GetCharactersAsync(CancellationToken ct)
     {
-        return await _characterRepository.GetCharactersAsync(ct);
+        return await characterRepository.GetCharactersAsync(ct);
     }
     
     [HttpPost("TestUnitOfWorkWithTransactionPattern")]
     public async Task<IQueryable<Character>> CreateCharactersTestAsync(CancellationToken ct)
     {
-        await _characterEngine.TestCreateCharacterAsync(ct);
+        await characterEngine.TestCreateCharacterAsync(ct);
 
-        return _repository.SecureWithNoTracking<Character>();
+        return repository.SecureWithNoTracking<Character>();
     }
     
     [HttpPost("BeginSyncJob")]
     public async Task<IQueryable<Character>> BeginSyncJobAsync(CancellationToken ct)
     {
-        await _characterMetadataService.BeginSyncJobAsync(ct);
+        await characterMetadataService.BeginSyncJobAsync(ct);
 
-        return _repository.SecureWithNoTracking<Character>();
+        return repository.SecureWithNoTracking<Character>();
     }
     
     [HttpPost("MakeAnkiDeck")]
     public async Task MakeAnkiDeckAsync(CancellationToken ct)
     {
-        await _writeAnkiFileService.MakeAnkiDeckAsync(ct);
+        await writeAnkiFileService.MakeAnkiDeckAsync(ct);
+    }
+    
+    [HttpPost("MakeAnkiCardFromWaniKaniUrl")]
+    public async Task<string> MakeAnkiDeckAsync(string url, CancellationToken ct)
+    {
+        return await waniKaniToAnkiService.GetAnkiCardFromWaniKaniUrl(url, ct);
+    }
+    
+    [HttpPost("GetRawHtmlFromUrl")]
+    public async Task<string> GetRawHtmlFromUrl(string url, CancellationToken ct)
+    {
+        return await waniKaniToAnkiService.GetRawHtmlFromUrl(url, ct);
     }
 }

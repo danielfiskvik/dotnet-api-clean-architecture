@@ -2,7 +2,6 @@ using ModularApp.Modules.Workspace.Application.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Net.Http.Headers;
 using ModularApp.Modules.Workspace.Application.Interfaces;
 using ModularApp.Modules.Workspace.Infrastructure.Integrations;
 using ModularApp.Modules.Workspace.Infrastructure.Persistence;
